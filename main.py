@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from deap import base, creator, tools, algorithms
 
 # Define your graph and number of partitions here
+# G = nx.karate_club_graph()
 G = nx.random_partition_graph([10, 10, 10], 0.25, 0.01)
 k = 3
 
