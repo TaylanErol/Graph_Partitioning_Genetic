@@ -26,4 +26,4 @@ The GA is run across multiple generations where for each generation, the offspri
 
 
 To use the script, you need to have Python installed along with the necessary packages (numpy, networkx, matplotlib, deap).
-Simply run the script by typing python <script_name.py> on a command line
+Simply run the script by typing python <main.py> on a command line
