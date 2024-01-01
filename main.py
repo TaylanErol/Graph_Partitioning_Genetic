@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from deap import base, creator, tools, algorithms
 
 # Define your graph and number of partitions here
-# G = nx.karate_club_graph()
-G = nx.random_partition_graph([10, 10, 10], 0.25, 0.01)
+G = nx.karate_club_graph()
+#G = nx.random_partition_graph([10, 10, 10], 0.25, 0.01)
 k = 3
 
 
@@ -58,8 +58,8 @@ def setup_toolbox(G, k):
     return toolbox
 
 
-# Custom Genetic Algorithm
-def custom_eaSimple(G, toolbox, cxpb, mutpb, ngen, stats=None, halloffame=None, verbose=__debug__):
+#Genetic Algorithm
+def genetic_algorithm(G, toolbox, cxpb, mutpb, ngen, stats=None, halloffame=None, verbose=__debug__):
     pop = toolbox.population(n=50)
     logbook = tools.Logbook()
     logbook.header = ['gen', 'nevals'] + (stats.fields if stats else [])
@@ -125,10 +125,10 @@ def custom_eaSimple(G, toolbox, cxpb, mutpb, ngen, stats=None, halloffame=None, 
 toolbox = setup_toolbox(G, k)
 
 stats = tools.Statistics(lambda ind: ind.fitness.values)
-stats.register("max", max)
+stats.register("max", numpy.max)
 stats.register("avg", numpy.mean)
 stats.register("std", numpy.std)
 
-pop, log = custom_eaSimple(G, toolbox, 0.5, 0.2, 100, stats=stats)
+pop, log = genetic_algorithm(G, toolbox, 0.6, 0.5, 100, stats=stats)
 best_ind = tools.selBest(pop, k=1)[0]
 plot_graph(G, decode_individual(best_ind), "Final", show=True)
